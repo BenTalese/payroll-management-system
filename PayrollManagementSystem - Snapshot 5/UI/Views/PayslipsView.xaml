@@ -1,0 +1,51 @@
+﻿<Page x:Class="UI.Views.PayslipsView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:UI.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PayslipsView">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <Button x:Name="btnGeneratePayslipView" Content="Generate New Payslip" Grid.Row="1" Grid.Column="1"
+                Click="btnGeneratePayslipView_Click"  Width="250" HorizontalAlignment="Right" />
+        <Button x:Name="btnEmployeesView" Click="btnEmployeesView_Click" Content="View Employees" Grid.Column="1"
+                HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="250" Height="50"/>
+
+        <Label Content="EmployeeID:" Style="{StaticResource LabelStyle}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="104" Height="30"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="114,5,0,0" Grid.Row="2" Style="{StaticResource TextBoxStyle}"  Text="{Binding EmployeeID, Mode=OneWay}" VerticalAlignment="Top" Width="136"/>
+        <Label Content="Employee Name:" Style="{StaticResource LabelStyle}" Grid.Column="1" HorizontalAlignment="Left" Margin="325,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="139" Height="30"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="464,5,0,0" Grid.Row="2" Style="{StaticResource TextBoxStyle}" Text="{Binding FirstName, Mode=OneWay}" VerticalAlignment="Top" Width="84"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="553,5,0,0" Grid.Row="2" Style="{StaticResource TextBoxStyle}" Text="{Binding LastName, Mode=OneWay}" VerticalAlignment="Top" Width="136"/>
+
+        <DataGrid x:Name="dgPayslips" Grid.Column="1" Grid.Row="4" AutoGenerateColumns="false" IsReadOnly="true">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Payslip ID" Binding="{Binding ShiftID}" Width="80*" />
+                <DataGridTextColumn Header="Pay Cycle Start Date" Binding="{Binding ShiftDate, StringFormat='{}{0:dd/MM/yyyy}'}" Width="120*" />
+                <DataGridTextColumn Header="Pay Cycle End Date" Binding="{Binding StartTime, StringFormat='\{0:hh\\:mm\}'}" Width="120*" />
+                <DataGridTemplateColumn Width="60*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btnDetailsView" Click="btnDetailsView_Click">Details</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

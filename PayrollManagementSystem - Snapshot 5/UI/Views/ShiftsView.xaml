@@ -1,0 +1,44 @@
+﻿<Page x:Class="UI.Views.ShiftsView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:UI.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ShiftsView">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <Button x:Name="btnAddShiftView" Content="Add Shift" Grid.Row="1" Grid.Column="1"
+                Click="btnAddShiftView_Click" Width="250" HorizontalAlignment="Right" />
+
+        <DataGrid x:Name="dgShifts" Grid.Column="1" Grid.Row="3" AutoGenerateColumns="false" IsReadOnly="true">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ShiftID" Binding="{Binding ShiftID}" Width="100*" />
+                <DataGridTextColumn Header="Date" Binding="{Binding ShiftDate, StringFormat='{}{0:dd/MM/yyyy}'}" Width="100*" />
+                <DataGridTextColumn Header="Start Time" Binding="{Binding StartTime, StringFormat='\{0:hh\\:mm\}'}" Width="100*" />
+                <DataGridTextColumn Header="End Time" Binding="{Binding EndTime, StringFormat='\{0:hh\\:mm\}'}" Width="100*" />
+                <DataGridTemplateColumn Width="60*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btnDelete" Click="btnDelete_Click">Delete</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnEmployeesView" Click="btnEmployeesView_Click" Content="View Employees" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="250" Height="50"/>
+    </Grid>
+</Page>
